@@ -7,9 +7,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5AAAC469-885
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{DD914FB7-04B6-43AB-8482-5E34949BAB72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDN.Net.OpenXML", "OpenXML\DDDN.Net.OpenXML.csproj", "{51724927-D2E5-4691-95B6-28F867550D74}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{51724927-D2E5-4691-95B6-28F867550D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{51724927-D2E5-4691-95B6-28F867550D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{51724927-D2E5-4691-95B6-28F867550D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{51724927-D2E5-4691-95B6-28F867550D74}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{51724927-D2E5-4691-95B6-28F867550D74} = {5AAAC469-885A-40B0-AA51-727551A8407C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {09B5EC2A-DC75-4581-99B0-62DAC4FF0C8C}
