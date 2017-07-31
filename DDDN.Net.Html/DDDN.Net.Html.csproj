@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Library</OutputType>
@@ -6,10 +6,10 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <Product>DDDN.Net.OpenXML Library</Product>
+    <Product>DDDN.Net.Html Library</Product>
     <Copyright>Copyright(C) 2017 Lukasz Jaskiewicz</Copyright>
     <Authors>Lukasz Jaskiewicz (lukasz@jaskiewicz.de)</Authors>
-    <Description>DDDN.Net.OpenXML Library</Description>
+    <Description>DDDN.Net.Html Library</Description>
     <PackageProjectUrl>www.jaskiewicz.de</PackageProjectUrl>
     <Version>0.0.0.1</Version>
     <AssemblyVersion>0.0.0.1</AssemblyVersion>
@@ -29,12 +29,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DocumentFormat.OpenXml" Version="2.7.2" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\..\Logging\Messages\DDDN.Logging.Messages.csproj" />
-    <ProjectReference Include="..\DDDN.Net.Html\DDDN.Net.Html.csproj" />
   </ItemGroup>
 
 </Project>
