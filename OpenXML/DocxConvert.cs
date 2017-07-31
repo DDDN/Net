@@ -20,57 +20,64 @@ using DocumentFormat.OpenXml.Packaging;
 using DocumentFormat.OpenXml.Wordprocessing;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace DDDN.Net.OpenXML
 {
-    public class DocxConvert : IDocxConvert
-    {
-        private FileStream DocStream;
+	public class DocxConvert : IDocxConvert
+	{
+		private FileStream DocStream;
 
-        public DocxConvert(FileStream docStream)
-        {
-            DocStream = docStream;
-        }
+		public DocxConvert(FileStream docStream)
+		{
+			DocStream = docStream;
+		}
 
-        public string ToHTMLWithStyleSheets()
-        {
-            IHtmlNode htmlArticle = new HtmlNode(HtmlTag.article);
+		public string ToHTMLWithStyleSheets()
+		{
+			IHtmlNode htmlArticle = new HtmlNode(HtmlTag.article);
 
-            using (WordprocessingDocument openXMLDoc = WordprocessingDocument.Open(DocStream, false))
-            {
-                WalkOverElements(openXMLDoc.MainDocumentPart.Document.Body.Elements(), ref htmlArticle);
-            }
+			using (WordprocessingDocument openXMLDoc = WordprocessingDocument.Open(DocStream, false))
+			{
+				WalkOverElements(openXMLDoc.MainDocumentPart.Document.Body.Elements(), htmlArticle);
+			}
 
-            var htmlBuilder = new StringBuilder(512);
-            htmlArticle.Render(ref htmlBuilder);
+			var htmlBuilder = new StringBuilder(512);
+			htmlArticle.Render(htmlBuilder);
 
-            return htmlBuilder.ToString();
-        }
+			return htmlBuilder.ToString();
+		}
 
-        private void WalkOverElements(IEnumerable<OpenXmlElement> elements, ref IHtmlNode htmlNode)
-        {
-            foreach (var ele in elements)
-            {
-                if (ele.GetType().Equals(typeof(Paragraph)))
-                {
-                    var innerText = ele.InnerText;
-                    IHtmlNode htmlP = null;
+		private void WalkOverElements(IEnumerable<OpenXmlElement> elements, IHtmlNode htmlNode)
+		{
+			foreach (var ele in elements)
+			{
+				if (ele.GetType().Equals(typeof(Paragraph)))
+				{
+					IHtmlNode htmlP = null;
 
-                    if (string.IsNullOrEmpty(innerText))
-                    {
-                        htmlP = new HtmlNode(HtmlTag.p);
+					if (string.IsNullOrEmpty(ele.InnerText))
+					{
+						htmlP = new HtmlNode(HtmlTag.p);
 
-                    }
-                    else
-                    {
-                        htmlP = new HtmlNode(HtmlTag.p, innerText);
-                    }
+					}
+					else
+					{
+						htmlP = new HtmlNode(HtmlTag.p, ele.InnerText);
+					}
 
-                    htmlNode.AddChild(ref htmlP);
-                    WalkOverElements(ele.ChildElements, ref htmlP);
-                }
-            }
-        }
-    }
+					var pProps = ele.GetFirstChild<ParagraphProperties>();
+
+					if (pProps != default(ParagraphProperties))
+					{
+						htmlP.AddClassName(pProps.ParagraphStyleId.Val);
+					}
+
+					htmlNode.AddChild(htmlP);
+					WalkOverElements(ele.ChildElements, htmlP);
+				}
+			}
+		}
+	}
 }

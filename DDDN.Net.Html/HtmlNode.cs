@@ -22,67 +22,102 @@ using System.Text;
 
 namespace DDDN.Net.Html
 {
-    public class HtmlNode : IHtmlNode
-    {
-        public string Name { get; }
-        public string InnerText { get; private set; } = null;
-        public List<IHtmlElement> Childs { get; private set; } = new List<IHtmlElement>();
+	public class HtmlNode : IHtmlNode
+	{
+		public string Name { get; }
+		public string InnerText { get; private set; } = null;
+		public List<IHtmlElement> Childs { get; private set; } = new List<IHtmlElement>();
+		public List<string> ClassNames { get; private set; } = new List<string>();
 
-        private HtmlNode() { }
+		private HtmlNode() { }
 
-        public HtmlNode(string name)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException(LogMsg.StrArgNullOrWhite, nameof(name));
-            }
+		public HtmlNode(string name)
+		{
+			if (string.IsNullOrWhiteSpace(name))
+			{
+				throw new ArgumentException(LogMsg.StrArgNullOrWhite, nameof(name));
+			}
 
-            Name = name;
-        }
+			Name = name;
+		}
 
-        public HtmlNode(string name, string innerText)
-        {
-            if (string.IsNullOrWhiteSpace(name))
-            {
-                throw new ArgumentException(LogMsg.StrArgNullOrWhite, nameof(name));
-            }
+		public HtmlNode(string name, string innerText)
+		{
+			if (string.IsNullOrWhiteSpace(name))
+			{
+				throw new ArgumentException(LogMsg.StrArgNullOrWhite, nameof(name));
+			}
 
-            if (string.IsNullOrEmpty(innerText))
-            {
-                throw new ArgumentException(LogMsg.StrArgNullOrEmpty, nameof(innerText));
-            }
+			if (string.IsNullOrEmpty(innerText))
+			{
+				throw new ArgumentException(LogMsg.StrArgNullOrEmpty, nameof(innerText));
+			}
 
-            Name = name;
-            InnerText = innerText;
-        }
+			Name = name;
+			InnerText = innerText;
+		}
 
-        public void AddChild(ref IHtmlNode child)
-        {
-            if (child == null)
-            {
-                throw new ArgumentNullException(nameof(child));
-            }
+		public void AddChild(IHtmlNode child)
+		{
+			if (child == null)
+			{
+				throw new ArgumentNullException(nameof(child));
+			}
 
-            Childs.Add(child);
-        }
+			Childs.Add(child);
+		}
 
-        public void Render(ref StringBuilder builder)
-        {
-            if (Childs.Any() || !String.IsNullOrEmpty(InnerText))
-            {
-                builder.Append($"<{Name}>{InnerText}");
+		public void Render(StringBuilder builder)
+		{
+			if (Childs.Any() || !String.IsNullOrEmpty(InnerText))
+			{
+				builder.Append($"<{Name}{GetClassAttribute()}>{InnerText}");
 
-                foreach (var child in Childs)
-                {
-                    child.Render(ref builder);
-                }
+				foreach (var child in Childs)
+				{
+					child.Render(builder);
+				}
 
-                builder.Append($"</{Name}>");
-            }
-            else
-            {
-                builder.Append($"<{Name}/>");
-            }
-        }
-    }
+				builder.Append($"</{Name}>");
+			}
+			else
+			{
+				builder.Append($"<{Name}{GetClassAttribute()}/>");
+			}
+		}
+
+		public void AddClassName(string className)
+		{
+			ClassNames.Add(className);
+		}
+
+		private string GetClassAttribute()
+		{
+			if (!ClassNames.Any())
+			{
+				return "";
+			}
+			var strBuilder = new StringBuilder(" class=\"", 128);
+
+			bool commata = false;
+
+			foreach (var className in ClassNames)
+			{
+				if (commata)
+				{
+					strBuilder.Append($", {className}");
+
+				}
+				else
+				{
+					strBuilder.Append(className);
+					commata = true;
+				}
+			}
+
+			strBuilder.Append("\" ");
+
+			return strBuilder.ToString();
+		}
+	}
 }

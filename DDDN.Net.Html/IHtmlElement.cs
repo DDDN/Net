@@ -14,12 +14,15 @@
 * to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+using System.Collections.Generic;
 using System.Text;
 
 namespace DDDN.Net.Html
 {
-    public interface IHtmlElement
-    {
-        void Render(ref StringBuilder builder);
-    }
+	public interface IHtmlElement
+	{
+		List<string> ClassNames { get; }
+		void Render(StringBuilder builder);
+		void AddClassName(string className);
+	}
 }

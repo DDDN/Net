@@ -21,6 +21,6 @@ namespace DDDN.Net.Html
     public interface IHtmlParent
     {
         List<IHtmlElement> Childs { get; }
-        void AddChild(ref IHtmlNode element);
+        void AddChild(IHtmlNode element);
     }
 }
