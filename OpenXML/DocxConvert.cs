@@ -35,7 +35,7 @@ namespace DDDN.Net.OpenXML
 
         public string ToHTMLWithStyleSheets()
         {
-            IHtmlNode htmlArticle = new HtmlNode("article");
+            IHtmlNode htmlArticle = new HtmlNode(HtmlTag.article);
 
             using (WordprocessingDocument openXMLDoc = WordprocessingDocument.Open(DocStream, false))
             {
@@ -59,12 +59,12 @@ namespace DDDN.Net.OpenXML
 
                     if (string.IsNullOrEmpty(innerText))
                     {
-                        htmlP = new HtmlNode("p");
+                        htmlP = new HtmlNode(HtmlTag.p);
 
                     }
                     else
                     {
-                        htmlP = new HtmlNode("p", innerText);
+                        htmlP = new HtmlNode(HtmlTag.p, innerText);
                     }
 
                     htmlNode.AddChild(ref htmlP);
