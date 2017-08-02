@@ -22,7 +22,8 @@ namespace DDDN.Net.Html
 {
     public static class HtmlTag
     {
-        public static readonly string p = nameof(p);
-        public static readonly string article = nameof(article);
+        public static readonly string P = "p";
+        public static readonly string Span = "span";
+        public static readonly string Article = "article";
     }
 }

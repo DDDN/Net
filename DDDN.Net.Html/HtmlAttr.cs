@@ -1,5 +1,5 @@
 ﻿/*
-* DDDN.Net.Html.IHtmlElement
+* DDDN.Net.Html.HtmlAttr
 * 
 * Copyright(C) 2017 Lukasz Jaskiewicz
 * Author: Lukasz Jaskiewicz (lukasz@jaskiewicz.de)
@@ -14,21 +14,16 @@
 * to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace DDDN.Net.Html
 {
-    public interface IHtmlElement
+    public static class HtmlAttr
     {
-        string Id { get; set; }
-        List<string> ClassNames { get; }
-        Dictionary<string, string> Styles { get; }
-        Dictionary<string, string> Attributes { get; }
-        string AppendInnerText(string text);
-        void AddClass(string className);
-        void AddStyleProperty(string propName, string propValue);
-        void AddAttribute(string attrName, string attrVal);
-        void RenderHtml(StringBuilder builder);
+        public static readonly string Id = "id";
+        public static readonly string Class = "class";
+        public static readonly string Style = "style";
     }
 }

@@ -1,5 +1,5 @@
 ﻿/*
-* DDDN.Net.Html.IHtmlElement
+* DDDN.Net.OpenXML.WStyleRunProperty
 * 
 * Copyright(C) 2017 Lukasz Jaskiewicz
 * Author: Lukasz Jaskiewicz (lukasz@jaskiewicz.de)
@@ -14,21 +14,21 @@
 * to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace DDDN.Net.Html
+namespace DDDN.Net.OpenXML
 {
-    public interface IHtmlElement
+    public class WStyleRunProperty
     {
-        string Id { get; set; }
-        List<string> ClassNames { get; }
-        Dictionary<string, string> Styles { get; }
-        Dictionary<string, string> Attributes { get; }
-        string AppendInnerText(string text);
-        void AddClass(string className);
-        void AddStyleProperty(string propName, string propValue);
-        void AddAttribute(string attrName, string attrVal);
-        void RenderHtml(StringBuilder builder);
+        /// <summary>
+        /// w:color
+        /// </summary>
+        public string FontColor { get; set; }
+        /// <summary>
+        /// w:sz
+        /// </summary>
+        public string FontSize { get; set; }
     }
 }

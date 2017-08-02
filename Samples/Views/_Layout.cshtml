@@ -1,33 +1,36 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8" />
-	<title>@ViewData["Title"] - DDDN.Net.Samples</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="@ViewData["Description"]" />
-	<link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - DDDN.Net.Samples</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="@ViewData["Description"]" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+        @Html.Raw(ViewData["ArticleCSS"])
+    </style>
 </head>
 <body>
-	<div class="wrapper">
-		<header role="banner">
-			<nav class="container">
-				<ul>
-					<li><a asp-controller="Home" asp-action="Index">DDDN.Net.Samples</a></li>
-					<li><a asp-controller="Home" asp-action="Index">Home</a></li>
-				</ul>
-			</nav>
-		</header>
-		<main class="container">
-			<h1>@ViewData["Title"]</h1>
-			@RenderBody()
-		</main>
-	</div>
-	<footer>
-		<div class="container">
-			<span>&copy; @DateTime.Now.Year - DDDN.Net.Samples</span>
-		</div>
-	</footer>
-	<script src="~/js/site.js" asp-append-version="true"></script>
-	@RenderSection("scripts", required: false)
+    <div class="wrapper">
+        <header role="banner">
+            <nav class="container">
+                <ul>
+                    <li><a asp-controller="Home" asp-action="Index">DDDN.Net.Samples</a></li>
+                    <li><a asp-controller="Home" asp-action="Index">Home</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main class="container">
+            <h1>@ViewData["Title"]</h1>
+            @RenderBody()
+        </main>
+    </div>
+    <footer>
+        <div class="container">
+            <span>&copy; @DateTime.Now.Year - DDDN.Net.Samples</span>
+        </div>
+    </footer>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("scripts", required: false)
 </body>
 </html>
