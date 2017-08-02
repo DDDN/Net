@@ -33,6 +33,7 @@ namespace DDDN.Net.OpenXML
         private WordprocessingDocument Doc { get; set; }
         private Dictionary<string, WStyleInfo> WStyleInfos { get; set; } = new Dictionary<string, WStyleInfo>();
         private List<WParagraphInfo> WParagraphInfos { get; set; } = new List<WParagraphInfo>();
+        private static readonly string StyleNamePrefix = "Word";
         /// <summary>
         /// CLass Constructor
         /// </summary>
@@ -58,7 +59,8 @@ namespace DDDN.Net.OpenXML
             foreach (var pInfo in WParagraphInfos)
             {
                 IHtmlNode pNode = new HtmlNode(HtmlTag.P);
-                pNode.AddClass(pInfo.Id);
+                pNode.AddClass("WordNormal");
+                pNode.AddClass($"{StyleNamePrefix}{pInfo.Id}");
                 rootHtmlTag.AddChild(pNode);
 
                 foreach (var rInfo in pInfo.Runs)

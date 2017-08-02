@@ -144,7 +144,7 @@ namespace DDDN.Net.Html
                     }
                     else
                     {
-                        strBuilder.Append($", {className}");
+                        strBuilder.Append($" {className}");
                     }
                 }
 
