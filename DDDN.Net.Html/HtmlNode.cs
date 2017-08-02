@@ -202,12 +202,10 @@ namespace DDDN.Net.Html
         /// <param name="className">Name of the class.</param>
         public void AddClass(string className)
         {
-            if (string.IsNullOrWhiteSpace(className))
+            if (!string.IsNullOrWhiteSpace(className))
             {
-                throw new ArgumentException(LogMsg.StrArgNullOrWhite, nameof(className));
+                ClassNames.Add(className);
             }
-
-            ClassNames.Add(className);
         }
         /// <summary>
         /// Adds a new style property an its value to the HTML style attribute.

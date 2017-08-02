@@ -33,7 +33,10 @@ namespace DDDN.Net.OpenXML
         private WordprocessingDocument Doc { get; set; }
         private Dictionary<string, WStyleInfo> WStyleInfos { get; set; } = new Dictionary<string, WStyleInfo>();
         private List<WParagraphInfo> WParagraphInfos { get; set; } = new List<WParagraphInfo>();
-
+        /// <summary>
+        /// CLass Constructor
+        /// </summary>
+        /// <param name="docStream">DOCX file stream.</param>
         public WordConvert(FileStream docStream)
         {
             if (docStream == null)
@@ -56,14 +59,21 @@ namespace DDDN.Net.OpenXML
             {
                 IHtmlNode pNode = new HtmlNode(HtmlTag.P);
                 pNode.AddClass(pInfo.Id);
-                pNode.AddStyleProperty(CssProperty.WhiteSpace, "nowrap");
                 rootHtmlTag.AddChild(pNode);
 
                 foreach (var rInfo in pInfo.Runs)
                 {
                     var runNode = new HtmlNode(HtmlTag.Span, rInfo.Text);
-                    runNode.AddStyleProperty(CssProperty.FontColor, $"#{rInfo.FontColor}");
-                    runNode.AddStyleProperty(CssProperty.FontSize, $"{rInfo.FontSize}px");
+
+                    if (rInfo.FontColor != null)
+                    {
+                        runNode.AddStyleProperty(CssProperty.FontColor, $"#{rInfo.FontColor}");
+                    }
+                    if (rInfo.FontSize != null)
+                    {
+                        runNode.AddStyleProperty(CssProperty.FontSize, $"{rInfo.FontSize}px");
+                    }
+
                     pNode.AddChild(runNode);
                 }
             }
@@ -73,7 +83,10 @@ namespace DDDN.Net.OpenXML
             var html = htmlB.ToString();
             return html;
         }
-
+        /// <summary>
+        /// Renders the CSS that should be linked/added into the html header.
+        /// </summary>
+        /// <returns>The css to be linked/added to the header.</returns>
         public string GetCSS()
         {
             var styles = Doc.MainDocumentPart.StyleDefinitionsPart?.Styles;
@@ -106,14 +119,16 @@ namespace DDDN.Net.OpenXML
             var cssB = new StringBuilder(2048);
             return cssB.ToString();
         }
-
+        /// <summary>
+        /// Parse the needed infromation from the DOCX strong typed classes, that represent the XML structure.
+        /// </summary>
         private void GetWDocInfo()
         {
             foreach (var para in Doc.MainDocumentPart.Document.Body.Elements<Paragraph>())
             {
                 var pInfo = new WParagraphInfo()
                 {
-                    Id = para.ParagraphProperties.ParagraphStyleId.Val
+                    Id = para.ParagraphProperties?.ParagraphStyleId?.Val
                 };
 
                 foreach (var run in para.OfType<Run>())
@@ -132,9 +147,26 @@ namespace DDDN.Net.OpenXML
             }
         }
 
+        #region IDisposable Support
+        private bool disposed = false;
+
         public void Dispose()
         {
-            Doc.Dispose();
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return;
+
+            if (disposing)
+            {
+                Doc.Dispose();
+            }
+
+            disposed = true;
+        }
+        #endregion
     }
 }
