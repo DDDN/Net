@@ -8,7 +8,7 @@
   <PropertyGroup>
     <Product>DDDN.Net.Html Library</Product>
     <Copyright>Copyright(C) 2017 Lukasz Jaskiewicz</Copyright>
-    <Authors>Lukasz Jaskiewicz (lukasz@jaskiewicz.de)</Authors>
+    <Authors>Lukasz Jaskiewicz (lukasz@jaskiewicz.de, devdone@outlook.com)</Authors>
     <Description>DDDN.Net.Html Library</Description>
     <PackageProjectUrl>www.jaskiewicz.de</PackageProjectUrl>
     <Version>0.0.0.1</Version>
