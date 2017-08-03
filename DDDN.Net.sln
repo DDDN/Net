@@ -18,7 +18,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "samples", "samples", "{979A
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDN.Net.Samples", "Samples\DDDN.Net.Samples.csproj", "{A88903F3-68EC-4331-805E-60E71F5BF09D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDN.Net.Html", "DDDN.Net.Html\DDDN.Net.Html.csproj", "{16DAB69D-01A4-4AFD-AE6F-67DA899EFA9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDDN.Net.Html", "Html\DDDN.Net.Html.csproj", "{16DAB69D-01A4-4AFD-AE6F-67DA899EFA9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
