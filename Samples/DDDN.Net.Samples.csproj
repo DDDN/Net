@@ -5,23 +5,12 @@
     <MvcRazorCompileOnPublish>true</MvcRazorCompileOnPublish>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <Product>DDDN.Net.Samples Application</Product>
-    <Copyright>Copyright(C) 2017 Lukasz Jaskiewicz</Copyright>
-    <Authors>Lukasz Jaskiewicz (lukasz@jaskiewicz.de, devdone@outlook.com)</Authors>
-    <Description>DDDN.Net.Samples Application</Description>
-    <PackageProjectUrl>www.jaskiewicz.de</PackageProjectUrl>
-    <Version>0.0.0.1</Version>
-    <AssemblyVersion>0.0.0.1</AssemblyVersion>
-    <NeutralLanguage>en-US</NeutralLanguage>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0-preview2-final" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OpenXML\DDDN.Net.OpenXML.csproj" />
+    <ProjectReference Include="..\..\Office\DOCX\DDDN.Office.DOCX.csproj" />
   </ItemGroup>
 
 </Project>
