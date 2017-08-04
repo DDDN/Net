@@ -14,16 +14,12 @@
 * to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace DDDN.Net.Html
 {
     public static class CssProperty
     {
-        public static readonly string FontColor = "color";
-        public static readonly string FontSize = "font-size";
-        public static readonly string WhiteSpace = "white-space";
+        public static readonly string color = "color";
+        public static readonly string font_size = "font-size";
+        public static readonly string white_space = "white-space";
     }
 }
